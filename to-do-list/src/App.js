@@ -1,5 +1,7 @@
 import React ,{useState
+
 } from "react";
+import  TodoList from "./TodoList"
 function App() {
   const [task , setTask]= useState("");
   const [todos,setTodos]= useState([]);
@@ -12,6 +14,10 @@ function App() {
       setTodos(newTodos);
       setTask("");
   }
+  const deleteHandler = (indexValue)=>{
+    const newTodos= todos.filter((todo, index)=>index !== indexValue)
+    setTodos(newTodos)
+  }
   return (
 <div>
   <center>
@@ -22,6 +28,7 @@ function App() {
           <input type="text" name="task" value={task} onChange={changeHandler}/>  &nbsp; &nbsp;
           <input type="submit" value="Add" name="Add"/>
         </form>
+        <TodoList todos={todos} deleteHandler={deleteHandler}/>
       </div>
     </div>
   </center>
